@@ -314,6 +314,19 @@ api: 1,
 	</body>
 </main>
 <script>
+
+const mediaQuery = window.matchMedia('(min-width: 768px)')
+var media = true;
+function handleMedia(e) {
+  if (!e.matches) {
+    media = true;
+  } else {
+    media = false;
+  }
+}
+
+mediaQuery.addListener(handleMedia)
+
 	window.onload = function () {
 new fullpage('#fullpage', {
 // options here
@@ -330,9 +343,11 @@ fullpage_api.setAllowScrolling(false);
 fullpage_api.setRecordHistory(false);
 document.querySelectorAll(".char__select-item").forEach((el => {
 	el.addEventListener("click", () => {
-	document.querySelector(".char__info-slider").scrollIntoView({
+        if (media) {
+        document.querySelector(".char__info-slider").scrollIntoView({
                 behavior: 'smooth',
             });
+            }
 	})
 }))
 

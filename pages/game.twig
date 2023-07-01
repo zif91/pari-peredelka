@@ -638,6 +638,18 @@ api: 1,
     </div>
   </main>
   <script>
+const mediaQuery = window.matchMedia('(min-width: 768px)')
+var media = true;
+function handleMedia(e) {
+  if (!e.matches) {
+    media = true;
+  } else {
+    media = false;
+  }
+}
+
+mediaQuery.addListener(handleMedia)
+
   window.onload = function() {
     new fullpage('#fullpage', {
       //options here
@@ -652,9 +664,11 @@ api: 1,
     fullpage_api.setRecordHistory(false);
     document.querySelectorAll(".char__select-item").forEach((el => {
       el.addEventListener("click", () => {
+        if (media) {
         document.querySelector(".char__info-slider").scrollIntoView({
                 behavior: 'smooth',
             });
+            }
       })
     }))
 
