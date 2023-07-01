@@ -1,4 +1,4 @@
-<div class="accordion__item " data-accordion-item data-vacancy-id="{{data.id}}">
+<div class="accordion__item" data-accordion-item>
   <div class="accordion__header">
     <div class="accordion__header-time">{{ data['tv.date'] |date("d.m.Y") }}</div>
     <div class="accordion__header-vakanci">{{ data['title'] }}</div>
@@ -6,23 +6,16 @@
     <div class="accordion__header-pay">{{ data['tv.pay'] }}</div>
     <div class="accordion__header-other">
       {% if data['tv.hh_link'] is not empty %}
-  <a href="{{ data['tv.hh_link'] }}"><img src="templates/img/hh.svg" alt="in"></a>
+  <a class="accordion__header-other-logo" href="{{ data['tv.hh_link'] }}"><img src="templates/img/hh.svg" alt="in"></a>
 {% endif %}
 {% if data['tv.in_link'] is not empty %}
-  <a href="{{ data['tv.in_link'] }}"><img src="templates/img/in.svg" alt="in"></a>
+  <a class="accordion__header-other-logo" href="{{ data['tv.in_link'] }}"><img src="templates/img/in.svg" alt="in"></a>
 {% endif %}
       <div class="accordion__header-click">
-        
-        										{% if data.teststudy is defined and resource.teststudy %}
-<a href="#" class="accordion__header-btn"  data-url="/formvac.html" data-title="{{data.pagetitle}}">
+        <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="No">
           Оставить отклик
         </a>
-        {% else %}
-        <a href="#" class="accordion__header-btn"  data-url="/forma-bez-fajla.html" data-title="{{data.pagetitle}}">
-          Оставить отклик
-        </a>
-        {% endif %}
-        {#<a class="accordion__header-link" href="#">Рекомендовать другу</a>#}
+        <a class="accordion__header-link" href="#">Рекомендовать другу</a>
       </div>
     </div>
   </div>
@@ -34,16 +27,26 @@
         </div>
         <ol>
           {{ data['tv.special'] | raw}}
-          {% if data["tv.teststudy"] is defined and data["tv.teststudy"] %}
-              <li style="  list-style-type: none;">Требуется выполнение <a href="{{data["tv.teststudy"]}}" download class="teststudy">тестового задания</a></li>
-          {% endif %}
         </ol>
       </div>
+      <div class="accordion__content-adaptive ">
+                <div class="accordion__content-label">
+                  Вакансии на ресурсах
+                </div>
+                <div class="accordion__content-vacancy">
+                {% if data['tv.hh_link'] is not empty %}
+                  <a href="{{ data['tv.hh_link'] }}"><img src="templates/img/hh.svg" alt="in"></a>
+                {% endif %}
+                {% if data['tv.in_link'] is not empty %}
+                  <a href="{{ data['tv.in_link'] }}"><img src="templates/img/in.svg" alt="in"></a>
+                {% endif %}
+              </div>
+              </div>
       <div class="accordion__content-lavel">
         <div class="accordion__content-label">
           Уровень знаний
         </div>
-        <a class="accordion__content-rang" href="#">{{ data['tv.rang'] }}</a>
+        <div class="accordion__content-rang">{{ data['tv.rang'] }}</div>
       </div>
     </div>
     <div class="accordion__content-bottom">
@@ -72,6 +75,13 @@
           </li>
           {% endfor %}
         </ul>
+      </div>
+      <div class="accordion__content-links">
+        <a href="#" class="accordion__header-btn">
+          Оставить отклик
+        </a>
+        <div class="accordion__content-txt">или напишите напрямую руководителяю</br>подразделения</div>
+        <a href="#"><img src="templates/img/telegram.svg" alt=""></a>
       </div>
     </div>
   </div>

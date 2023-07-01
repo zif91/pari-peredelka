@@ -129,7 +129,7 @@ api: 1,
                           <div class="test__slide-power">
                             <img class="test__slide-power-img" src="templates/img//test/test-fist.svg" alt="">
                             <div class="test__slide-power-text">
-                              Суперсила
+                              ТУТ НЕПОНЯТНО ЧТО ДОЛЖНО БЫТЬ!
                             </div>
                           </div>
                         </div>
@@ -647,9 +647,16 @@ api: 1,
 			anchors: ['vacancy-char', 'lastPage'],
       licenseKey: 'gplv3-license'
     });
-fullpage_api.setAllowScrolling(false);
-fullpage_api.setKeyboardScrolling(false);
-fullpage_api.setRecordHistory(false);
+    fullpage_api.setAllowScrolling(false);
+    fullpage_api.setKeyboardScrolling(false);
+    fullpage_api.setRecordHistory(false);
+    document.querySelectorAll(".char__select-item").forEach((el => {
+      el.addEventListener("click", () => {
+        document.querySelector(".char__info-slider").scrollIntoView({
+                behavior: 'smooth',
+            });
+      })
+    }))
 
   };
  

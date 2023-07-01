@@ -328,6 +328,13 @@ licenseKey: 'gplv3-license'
 fullpage_api.setAllowScrolling(false);
 // fullpage_api.setKeyboardScrolling(false);
 fullpage_api.setRecordHistory(false);
+document.querySelectorAll(".char__select-item").forEach((el => {
+	el.addEventListener("click", () => {
+	document.querySelector(".char__info-slider").scrollIntoView({
+                behavior: 'smooth',
+            });
+	})
+}))
 
 };
 </script>
