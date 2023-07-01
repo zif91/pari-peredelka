@@ -242,7 +242,7 @@ api: 1,
         </section>
       </div>
       <div class="section" id="vacancy-char2" data-anchor="vacancy-char">
-        <section class="char"  style="min-height:100vh">
+        <section class="char"  style="min-height:162vh">
           <div class="container">
             <div class="char__inner">
               <div class="char__select">
@@ -362,6 +362,7 @@ api: 1,
                 </div>
               </div>
               <div class="char__info-slider swiper mySwiper">
+                <img class="char__slide-top" src="templates/img/backtop.svg" alt="">
                 <div class="char__info-wrapper swiper-wrapper">
                   {% for item in dlcatalog %}
                   <div class="char__info swiper-slide">
@@ -639,16 +640,6 @@ api: 1,
   </main>
   <script>
 const mediaQuery = window.matchMedia('(min-width: 768px)')
-var media = true;
-function handleMedia(e) {
-  if (!e.matches) {
-    media = true;
-  } else {
-    media = false;
-  }
-}
-
-mediaQuery.addListener(handleMedia)
 
   window.onload = function() {
     new fullpage('#fullpage', {
@@ -662,15 +653,18 @@ mediaQuery.addListener(handleMedia)
     fullpage_api.setAllowScrolling(false);
     fullpage_api.setKeyboardScrolling(false);
     fullpage_api.setRecordHistory(false);
+    if (mediaQuery) {
     document.querySelectorAll(".char__select-item").forEach((el => {
       el.addEventListener("click", () => {
-        if (media) {
-        document.querySelector(".char__info-slider").scrollIntoView({
-                behavior: 'smooth',
-            });
-            }
+        window.scrollTo({
+          top: 500,
+          behavior: "smooth"
+        });
+           
       })
     }))
+    }
+    document.querySelector(".char__slide-top").addEventListener("click", window.scrollBy(0, 0));
 
   };
  
