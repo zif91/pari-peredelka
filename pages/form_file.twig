@@ -1,0 +1,14 @@
+{% extends 'app.twig' %}
+{#% cache 'header' ~ cacheKey %#}
+{#% include('partials/header.twig') %#}
+	{% block MAIN %}
+
+{{ runSnippet('Form', {
+            formid: 'feedback',
+            path: '/templates/partials/forms/withoutfile/',
+            extension: 'twig',
+            to: 'jacov911@ya.ru',
+            }) | raw }}
+
+
+    {% endblock %}

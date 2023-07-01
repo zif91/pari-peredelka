@@ -1,0 +1,50 @@
+{
+  "rules":
+  {
+    
+  },
+  "attachments": "resume,test",
+  "fileRules":
+  {
+    "resume":
+    {
+      "required": "Приложите Резюме",
+      "allowed":
+      {
+        "params": [
+          ["doc", "docx", "pdf", "jpg", "jpeg", "png", "xlsx"]
+        ],
+        "message": "Разрешены только документы jpeg, png, Word и Pdf"
+      },
+      "maxSize":
+      {
+        "params": 10000,
+        "message": "Размер файла не должен превышать 10 000 кб"
+      }
+    },
+    "test":
+    {
+      "required": "Приложите Тестовое задание",
+      "allowed":
+      {
+        "params": [
+          ["doc", "docx", "pdf", "jpg", "jpeg", "png", "xlsx"]
+        ],
+        "message": "Разрешены только документы jpeg, png, Word и Pdf"
+      },
+      "maxSize":
+      {
+        "params": 10000,
+        "message": "Размер файла не должен превышать 10 000 кб"
+      }
+    }
+  },
+  "subject": "Резюме с лендинга",
+  "debug": 1,
+  "cc": "k2@baspromo.com",
+  "reportTpl": "feedback.report.tpl",
+  "prepare": "flPrepare.emailto",
+  "prepareAfterProcess": "CatchFormResult",
+  "formControls": "agree",
+  "from": "info@diametry.ru"
+}

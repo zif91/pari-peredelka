@@ -1,0 +1,68 @@
+<div class="accordion__item" data-accordion-item>
+  <div class="accordion__header">
+    <div class="accordion__header-time">{{ data['tv.date'] |date("d.m.Y") }}</div>
+    <div class="accordion__header-vakanci">{{ data['title'] }}</div>
+    <div class="accordion__header-department">{{ data['tv.department'] }}</div>
+    <div class="accordion__header-pay">{{ data['tv.pay'] }}</div>
+    <div class="accordion__header-other">
+      {% if data['tv.hh_link'] is not empty %}
+  <a href="{{ data['tv.hh_link'] }}"><img src="templates/img/hh.svg" alt="in"></a>
+{% endif %}
+{% if data['tv.in_link'] is not empty %}
+  <a href="{{ data['tv.in_link'] }}"><img src="templates/img/in.svg" alt="in"></a>
+{% endif %}
+      <div class="accordion__header-click">
+        <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="No">
+          Оставить отклик
+        </a>
+        <a class="accordion__header-link" href="#">Рекомендовать другу</a>
+      </div>
+    </div>
+  </div>
+  <div class="accordion__content">
+    <div class="accordion__content-top">
+      <div class="accordion__content-condition">
+        <div class="accordion__content-label">
+          Особые условия
+        </div>
+        <ol>
+          {{ data['tv.special'] | raw}}
+        </ol>
+      </div>
+      <div class="accordion__content-lavel">
+        <div class="accordion__content-label">
+          Уровень знаний
+        </div>
+        <a class="accordion__content-rang" href="#">{{ data['tv.rang'] }}</a>
+      </div>
+    </div>
+    <div class="accordion__content-bottom">
+      <div class="accordion__content-column">
+        <h5 class="accordion__content-title">
+          Обязанности
+        </h5>
+        <ul class="accordion__content-list">
+          {% set duties = (data['tv.duties'] | json) %}
+          {% for item in duties.fieldValue %}
+          <li class="accordion__content-item">
+            {{ item.value }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="accordion__content-column">
+        <h5 class="accordion__content-title">
+          Требования
+        </h5>
+        <ul class="accordion__content-list">
+          {% set requirements = (data['tv.requirements'] | json) %}
+          {% for item in requirements.fieldValue %}
+          <li class="accordion__content-item">
+            {{ item.value }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
