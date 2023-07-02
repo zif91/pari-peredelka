@@ -707,25 +707,80 @@ AOS.init({
   disable: 'phone',
 });
 
-const menuLinks = document.querySelectorAll('[data-scroll]');
+function activateScript() {
+  $('.accordion__header-btn').on('click', function(event) {
+    event.preventDefault();
 
-function scrollToElement(event) {
-  event.preventDefault();
+    var link = $(this);
+    var vacancy = link.data('vacancy');
+    var tz = link.data('tz');
 
-  const targetId = event.target.getAttribute('href').slice(1);
-  const targetElement = document.getElementById(targetId);
+    tz = tz.toLowerCase(); // Приведение значения к нижнему регистру
 
-  if (targetElement) {
-    const offset = targetElement.offsetTop - 100;
-    const headerHeight = document.querySelector('.header').offsetHeight; // Учтите высоту заголовка, если он фиксирован
-    const scrollToPosition = offset - headerHeight;
-    window.scrollTo({
-      top: scrollToPosition,
-      behavior: 'smooth'
-    });
-  }
+    var url;
+    if (tz === 'no') {
+      url = '/forma-bez-fajla.html';
+    } else if (tz === 'yes') {
+      url = '/formvac.html';
+    } else {
+      console.log('Invalid value for data-tz');
+      return; // Прекратить выполнение скрипта
+    }
+
+    var footerFormInner = $('.ajax-form');
+    if (footerFormInner.length > 0) {
+      $.ajax({
+        url: url + '?rand=' + Math.random(), // Добавление случайного значения в URL запроса
+        success: function(response) {
+          footerFormInner.html(response);
+        
+          if (document.querySelector('.test-2')) {
+            // Если есть хотя бы один элемент с классом 'test-2', выполнить fullpage_api.moveSectionDown()
+            fullpage_api.moveSectionDown();
+          } else {
+            // В противном случае выполнить прокрутку до footerFormInner
+            $('html, body').animate({
+              scrollTop: footerFormInner.offset().top
+            }, 500);
+          }
+        
+          $('#vakancy').val(vacancy).prop('disabled', true);
+        },
+        
+        error: function() {
+          console.log('Error occurred during loading the form.');
+        }
+      });
+    } else {
+      console.log('Element with class .ajax-form not found.');
+    }
+  });
+
+  // Другой код вашего скрипта
+
+  // ...
 }
 
-menuLinks.forEach(link => {
-  link.addEventListener('click', scrollToElement);
+// Вызов функции при инициализации документа
+$(document).ready(function() {
+  activateScript();
 });
+
+// Вызов функции при срабатывании события ajaxComplete или ajaxSuccess
+$(document).ajaxComplete(function() {
+  activateScript();
+});
+
+$(document).ajaxSuccess(function() {
+  activateScript();
+});
+
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+  
+});
+

@@ -149,7 +149,7 @@
 														</ul>
 													</div>
 													<div class="accordion__content-links">
-														<a href="#" class="accordion__header-btn">
+														<a href="#" id="moveSectionDown2" class="accordion__header-btn accordion__header-btn2">
 														Оставить отклик
 														</a>
 														<div class="accordion__content-txt">или напишите напрямую руководителяю</br>подразделения</div>
@@ -222,6 +222,11 @@ licenseKey: 'gplv3-license'
 });
 fullpage_api.setAllowScrolling(false);
 document.querySelector('#moveSectionDown').addEventListener('click', function (e) {
+e.preventDefault();
+fullpage_api.moveSectionDown();
+});
+
+document.querySelector('#moveSectionDown2').addEventListener('click', function (e) {
 e.preventDefault();
 fullpage_api.moveSectionDown();
 });

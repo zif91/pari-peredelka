@@ -63,8 +63,13 @@ api: 1,
 		<!-- Main Page -->
 		<main>
 			<div id="fullpage">
-				<div class="section">
-					<section class="test test-2">
+				<div class="section ">
+					
+					<section class="test test-2 video">
+						<video autoplay loop muted>
+							<source src="templates/img/football_video_01.mp4" type="video/mp4">
+							Ваш браузер не поддерживает HTML5 видео.
+						  </video>
 						<div class="container">
 							<div class="test__inner">
 								<div class="test__info">
@@ -148,6 +153,10 @@ api: 1,
 				<div class="section">
 					<a name="vacancytop"></a>
 					<section class="char char-2">
+							<video autoplay loop muted>
+							  <source src="templates/img/football_video_01.mp4" type="video/mp4">
+							  Ваш браузер не поддерживает HTML5 видео.
+							</video>
 						<div class="container">
 							<div class="char__inner">
 								<div class="char__select">
@@ -226,7 +235,11 @@ api: 1,
 					</section>
 				</div>
 				<div class="section">
-					<section>
+					<section class="video">
+						<video autoplay loop muted>
+							<source src="templates/img/football_video_02.mp4" type="video/mp4">
+							Ваш браузер не поддерживает HTML5 видео.
+						  </video>
 						<div class="job game-job job-3" style="min-height:100vh">
 							<div class="container">
 								<div class="job__main">
@@ -261,8 +274,9 @@ api: 1,
 						</div>
 					</section>
 				</div>
-				<section>
+				<section  class="video">
 					<div class="section">
+						
 						<div class="footer-form footer-form-game footer-form-3">
 							<div class="container">
 								<div class="footer-form__inner">
@@ -287,6 +301,8 @@ api: 1,
 										</div>
 									</div>
 								</div>
+								</div>
+								
 							</section>
 							{#<section>
 																		<div class="section">
@@ -323,6 +339,7 @@ new fullpage('#fullpage', {
 // autoScrolling: true,
 // scrollHorizontally: true,
 sectionSelector: '.section',
+normalScrollElements: ' .accordion',
 anchors: [
 'vacancy-char', 'lastPage'
 ],
@@ -352,6 +369,9 @@ targetBlock.scrollIntoView({behavior: 'smooth'});
 
 // Добавляем класс 'active' к элементу с атрибутом data-vacancy-id
 vacancyBlock.classList.add('active');
+
+activateScript();
+
 
 // Добавляем обработчики событий после обновления содержимого
 addVacancyButtonListeners();
