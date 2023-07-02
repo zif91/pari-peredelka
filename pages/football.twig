@@ -146,6 +146,7 @@ api: 1,
 					</section>
 				</div>
 				<div class="section">
+				<a name="vacancytop"></a>
 					<section class="char char-2">
 						<div class="container">
 							<div class="char__inner">
@@ -156,13 +157,13 @@ api: 1,
 
 									<ul class="char__select-list">
 										{% for data in dlcatalog %}
-
 											<li class="char__select-item">
-												<img class="char__select-avatar" src="{{data.footballimg}}" alt="">
-
-												<p class="char__select-name">
-													{{data.footballtitle}}
-												</p>
+												<a href="#vacancybot">
+													<img class="char__select-avatar" src="{{data.footballimg}}" alt="">
+													<p class="char__select-name">
+														{{data.footballtitle}}
+													</p>
+												<a/>											
 											</li>
 										{% endfor %}
 
@@ -185,7 +186,9 @@ api: 1,
 									</div>
 								</div>
 
+              					<a name="vacancybot"></a>
 								<div class="char__info-slider swiper mySwiper">
+								<a class="char__slide-top" style="top: 0px;" href="#vacancytop"><img  src="templates/img/backtop.svg" alt=""></a>
 									<div class="char__info-wrapper swiper-wrapper">
 										{% for data in dlcatalog %}
 
@@ -315,19 +318,8 @@ api: 1,
 </main>
 <script>
 
-const mediaQuery = window.matchMedia('(min-width: 768px)')
-var media = true;
-function handleMedia(e) {
-  if (!e.matches) {
-    media = true;
-  } else {
-    media = false;
-  }
-}
 
-mediaQuery.addListener(handleMedia)
-
-	window.onload = function () {
+window.onload = function () {
 new fullpage('#fullpage', {
 // options here
 // autoScrolling: true,
@@ -341,15 +333,7 @@ licenseKey: 'gplv3-license'
 fullpage_api.setAllowScrolling(false);
 // fullpage_api.setKeyboardScrolling(false);
 fullpage_api.setRecordHistory(false);
-document.querySelectorAll(".char__select-item").forEach((el => {
-	el.addEventListener("click", () => {
-        if (media) {
-        document.querySelector(".char__info-slider").scrollIntoView({
-                behavior: 'smooth',
-            });
-            }
-	})
-}))
+
 
 };
 </script>

@@ -301,7 +301,7 @@ function heroGame() {
 }
 
 heroGame();
-
+document.getElementsByClassName("accordion__content-open")[0].style.display = "flex";
 
 // Аккордеон
 const accordionItems = document.querySelectorAll('[data-accordion-item]');
@@ -324,6 +324,7 @@ function toggleAccordion(event) {
     if (openAccordionContent) {
       // если у аккордеона есть содержимое
       openAccordionContent.style.maxHeight = null; // сбросить высоту контента
+      try{openAccordion.getElementsByClassName("accordion__content-open")[0].style.display = "none";} catch {}
     }
   }
 
@@ -334,12 +335,14 @@ function toggleAccordion(event) {
     // если у аккордеона есть содержимое
     if (content.style.maxHeight) {
       // Если контент открыт, закрыть его
-      content.style.maxHeight = null;
+      content.style.maxHeight = null;      
+      this.getElementsByClassName("accordion__content-open")[0].style.display = "none";
     } else {
       // Если контент закрыт, открыть его
       content.style.maxHeight = content.scrollHeight + 'px';
+      this.getElementsByClassName("accordion__content-open")[0].style.display = "flex";
     }
-  }
+  }  
 
   openAccordion = this; // запомнить ссылку на открытый аккордеон
 }
