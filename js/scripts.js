@@ -303,7 +303,6 @@ function heroGame() {
 heroGame();
 document.getElementsByClassName("accordion__content-open")[0].style.display = "flex";
 
-// Аккордеон
 const accordionItems = document.querySelectorAll('[data-accordion-item]');
 let openAccordion = null; // переменная для хранения ссылки на открытый аккордеон
 
@@ -324,7 +323,7 @@ function toggleAccordion(event) {
     if (openAccordionContent) {
       // если у аккордеона есть содержимое
       openAccordionContent.style.maxHeight = null; // сбросить высоту контента
-      try{openAccordion.getElementsByClassName("accordion__content-open")[0].style.display = "none";} catch {}
+      try { openAccordion.getElementsByClassName("accordion__content-open")[0].style.display = "none"; } catch { }
     }
   }
 
@@ -335,28 +334,22 @@ function toggleAccordion(event) {
     // если у аккордеона есть содержимое
     if (content.style.maxHeight) {
       // Если контент открыт, закрыть его
-      content.style.maxHeight = null;      
+      content.style.maxHeight = null;
       this.getElementsByClassName("accordion__content-open")[0].style.display = "none";
     } else {
       // Если контент закрыт, открыть его
       content.style.maxHeight = content.scrollHeight + 'px';
       this.getElementsByClassName("accordion__content-open")[0].style.display = "flex";
     }
-  }  
+  }
 
   openAccordion = this; // запомнить ссылку на открытый аккордеон
 }
 
 if (accordionItems.length > 1) {
-  accordionItems[0].classList.add('active'); // Добавляем класс "active" к первому аккордеону
-  const content = accordionItems[0].nextElementSibling;
-  if (content) {
-    content.style.maxHeight = content.scrollHeight + 'px'; // Открываем содержимое первого аккордеона
-  }
-  openAccordion = accordionItems[0]; // Запоминаем ссылку на открытый аккордеон
-
   accordionItems.forEach((item) => item.addEventListener('click', toggleAccordion));
 }
+
 
 
 
@@ -714,3 +707,25 @@ AOS.init({
   disable: 'phone',
 });
 
+const menuLinks = document.querySelectorAll('[data-scroll]');
+
+function scrollToElement(event) {
+  event.preventDefault();
+
+  const targetId = event.target.getAttribute('href').slice(1);
+  const targetElement = document.getElementById(targetId);
+
+  if (targetElement) {
+    const offset = targetElement.offsetTop - 100;
+    const headerHeight = document.querySelector('.header').offsetHeight; // Учтите высоту заголовка, если он фиксирован
+    const scrollToPosition = offset - headerHeight;
+    window.scrollTo({
+      top: scrollToPosition,
+      behavior: 'smooth'
+    });
+  }
+}
+
+menuLinks.forEach(link => {
+  link.addEventListener('click', scrollToElement);
+});

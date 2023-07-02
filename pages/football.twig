@@ -84,7 +84,7 @@ api: 1,
 
 									<p class="test__descr">
 										Прокачал себя в банках, страховых, ECOM и телеке? Надоело? Приходи к нам! Полная стата по всему существующему
-																																																												          спорту! Не типовые задачи, крутой коллектив, релокация в Белград.
+																																																																						          спорту! Не типовые задачи, крутой коллектив, релокация в Белград.
 									</p>
 
 									<a class="test__link" href="#" id="moveSectionDown">
@@ -146,7 +146,7 @@ api: 1,
 					</section>
 				</div>
 				<div class="section">
-				<a name="vacancytop"></a>
+					<a name="vacancytop"></a>
 					<section class="char char-2">
 						<div class="container">
 							<div class="char__inner">
@@ -163,32 +163,30 @@ api: 1,
 													<p class="char__select-name">
 														{{data.footballtitle}}
 													</p>
-												<a/>											
+													</a>
 											</li>
-										{% endfor %}
+											{% endfor %}
+										</ul>
 
-									</ul>
 
-
-									<div class="char__map">
-										<div class="char__map-city">
-											<img class="char__map-img" src="templates/img/char/char-map.png" alt="">
-
-											<p class="char__map-descr">
-												“Играть” будем
-																																																																								              на карте Белграда
-											</p>
-										</div>
-
-										{#<a class="char__map-link" href="#">
-																																																			+5 веских причин, почему стоит работать в нашей компании
-																																																		</a>#}
-									</div>
+										{#<div class="char__map">
+																				<div class="char__map-city">
+																					<img class="char__map-img" src="templates/img/char/char-map.png" alt="">
+										
+																					<p class="char__map-descr">
+																						“Играть” будем
+																																																																																		              на карте Белграда
+																					</p>
+																				</div>
+										
+																				<a class="char__map-link" href="#">+5 веских причин, почему стоит работать в нашей компании
+																																																												</a>
+									</div>#}
 								</div>
 
-              					<a name="vacancybot"></a>
+								<a name="vacancybot"></a>
 								<div class="char__info-slider swiper mySwiper">
-								<a class="char__slide-top" style="top: 0px;" href="#vacancytop"><img  src="templates/img/backtop.svg" alt=""></a>
+									<a class="char__slide-top" style="top: 0px;" href="#vacancytop"><img src="templates/img/backtop.svg" alt=""></a>
 									<div class="char__info-wrapper swiper-wrapper">
 										{% for data in dlcatalog %}
 
@@ -250,76 +248,76 @@ api: 1,
                 depth: 2,
                 tvList:'date,department,pay,hh_link,in_link,special,rang,duties,requirements,teststudy',
                 ownerTPL: '@CODE:[+dl.wrap+]',
-                tpl:'@T_FILE:partials/accordeon',
+                tpl:'@T_FILE:partials/accordeon2',
                 debug: 0,
                 }) |raw
                 }}
 									</div>
 									<div class="accordion" id="vacanyhtml" style="
-    padding-top: 110px;
-"></div>
+										    padding-top: 110px;
+										"></div>
 								</div>
 							</div>
 						</div>
 					</section>
 				</div>
-                <section>
-								<div class="section">
-									<div class="footer-form footer-form-game footer-form-3">
-										<div class="container">
-											<div class="footer-form__inner">
-												<div class="footer-form__top">
-													<div class="footer-form__top-label">
-														Свяжитесь с нами
-													</div>
-													<h4 class="footer-form__title">
-														Простая форма для большого
-														<br>
-														шага вперед!
-													</h4>
-												</div>
-												<div class="footer-form__main">
-													<div class="footer-form__main">
-														{{ runSnippet('Form', {
+				<section>
+					<div class="section">
+						<div class="footer-form footer-form-game footer-form-3">
+							<div class="container">
+								<div class="footer-form__inner">
+									<div class="footer-form__top">
+										<div class="footer-form__top-label">
+											Свяжитесь с нами
+										</div>
+										<h4 class="footer-form__title">
+											Простая форма для большого
+											<br>
+											шага вперед!
+										</h4>
+									</div>
+									<div class="footer-form__main">
+										<div class="footer-form__main">
+											{{ runSnippet('Form', {
             formid: 'feedback',
             path: '/templates/partials/forms/withfile/',
             extension: 'twig',
             to: 'jacov911@ya.ru',
         }) | raw }}
-													</div>
-												</div>
-											</div>
-										</section>
-										{#<section>
-											<div class="section">
-												<div class="footer-form footer-form-game">
-													<div class="container">
-														<div class="footer-form__inner">
-															<div class="footer-form__top">
-																<div class="footer-form__top-label">
-																	Свяжитесь с нами
-																</div>
-																<h4 class="footer-form__title">
-																	Простая форма для большого
-																	<br>
-																	шага вперед!
-																</h4>
-															</div>
-															<div class="footer-form__main">
-																	<div class="footer-form__main">
-																		
-																	</div>
-															</div>
-														</div>
-													</section>#}
-			</div>
-		</div>
-	</body>
-</main>
-<script>
+										</div>
+									</div>
+								</div>
+							</section>
+							{#<section>
+																		<div class="section">
+																			<div class="footer-form footer-form-game">
+																				<div class="container">
+																					<div class="footer-form__inner">
+																						<div class="footer-form__top">
+																							<div class="footer-form__top-label">
+																								Свяжитесь с нами
+																							</div>
+																							<h4 class="footer-form__title">
+																								Простая форма для большого
+																								<br>
+																								шага вперед!
+																							</h4>
+																						</div>
+																						<div class="footer-form__main">
+																								<div class="footer-form__main">
+																									
+																								</div>
+																						</div>
+																					</div>
+																				</section>#}
+						</div>
+					</div>
+				</body>
+			</main>
+			<script>
 
 
-window.onload = function () {
+				window.onload = function () {
 new fullpage('#fullpage', {
 // options here
 // autoScrolling: true,
@@ -336,69 +334,70 @@ fullpage_api.setRecordHistory(false);
 
 
 };
-</script>
-<script>
-	// Обработчик события при клике на ссылку на вакансию
-// Обработчик события при клике на ссылку на вакансию
+			</script>
+			<script>
+				// Обработчик события при клике на ссылку на вакансию
+function handleClick(event) {
+event.preventDefault();
+
+const vacancyId = event.target.getAttribute('data-vacancy-idb');
+const vacancyBlock = document.querySelector (`[data-vacancy-id="${vacancyId}"]`);
+const vacancyHtml = vacancyBlock.outerHTML;
+
+const targetBlock = document.getElementById('vacanyhtml');
+targetBlock.innerHTML = vacancyHtml;
+
+// Прокрутка до блока с данными
+targetBlock.scrollIntoView({behavior: 'smooth'});
+
+// Добавляем класс 'active' к элементу с атрибутом data-vacancy-id
+vacancyBlock.classList.add('active');
+
+// Добавляем обработчики событий после обновления содержимого
+addVacancyButtonListeners();
+}
+
 // Функция для добавления обработчиков событий на кнопки "Перейти в вакансию"
 function addVacancyButtonListeners() {
-  const vacancyButtons = document.querySelectorAll('[data-vacancy-idb]');
-  
-  Array.from(vacancyButtons).forEach(function (button) {
-    button.addEventListener('click', handleClick);
-  });
-}
+const vacancyButtons = document.querySelectorAll('[data-vacancy-idb]');
 
-// Обработчик события при клике на ссылку на вакансию
-function handleClick(event) {
-  event.preventDefault();
-
-  const vacancyId = event.target.getAttribute('data-vacancy-idb');
-  const vacancyBlock = document.querySelector(`[data-vacancy-id="${vacancyId}"]`);
-  const vacancyHtml = vacancyBlock.outerHTML;
-
-  const targetBlock = document.getElementById('vacanyhtml');
-  targetBlock.innerHTML = vacancyHtml;
-
-  // Прокрутка до блока с данными
-  targetBlock.scrollIntoView({ behavior: 'smooth' });
-
-  // Добавляем обработчики событий после обновления содержимого
-  addVacancyButtonListeners();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Добавляем обработчики событий для первоначальной установки
-  addVacancyButtonListeners();
+Array.from(vacancyButtons).forEach(function (button) {
+button.addEventListener('click', handleClick);
 });
+}
+
+document.addEventListener('DOMContentLoaded', function () { // Добавляем обработчики событий для первоначальной установки
+addVacancyButtonListeners();
 
 // Находим ссылку
 var link = document.querySelector('.accordion__header-btn');
 
 // Добавляем обработчик события клика
 link.addEventListener('click', function (event) {
-  event.preventDefault(); // Отменяем переход по ссылке
+event.preventDefault(); // Отменяем переход по ссылке
 
-  var url = this.getAttribute('data-url'); // Получаем URL из атрибута data-url
+var url = this.getAttribute('data-url');
+// Получаем URL из атрибута data-url
 
-  // Создаем AJAX-запрос
-  var xhr = new XMLHttpRequest();
-  xhr.open('GET', url, true);
+// Создаем AJAX-запрос
+var xhr = new XMLHttpRequest();
+xhr.open('GET', url, true);
 
-  xhr.onload = function () {
-    if (xhr.status === 200) {
-      var response = xhr.responseText;
-      var mainDiv = document.querySelector('.footer-form__main');
+xhr.onload = function () {
+if (xhr.status === 200) {
+var response = xhr.responseText;
+var mainDiv = document.querySelector('.footer-form__main');
 
-      mainDiv.innerHTML = response; // Заменяем содержимое раздела
-      
-      // Добавляем обработчики событий после обновления содержимого
-      addVacancyButtonListeners();
-    }
-  };
+mainDiv.innerHTML = response;
+// Заменяем содержимое раздела
 
-  xhr.send();
+// Добавляем обработчики событий после обновления содержимого
+addVacancyButtonListeners();
+}
+};
+
+xhr.send();
 });
-
-
-</script>{% endblock %}
+});
+			</script>
+		{% endblock %}
