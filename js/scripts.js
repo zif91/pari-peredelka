@@ -40,268 +40,77 @@ function burgerMenu() {
 }
 burgerMenu();
 
-function heroBg3() {
+function setupHero() {
+  const container = document.querySelector('.hero');
+
+  if (!container) {
+    return null;
+  }
+
+  const link1 = document.querySelector('.hero__link--green');
+  const link2 = document.querySelector('.hero__link--transparent');
+  const link3 = document.querySelector('.hero__link--transparent span');
   const link12 = document.querySelector('.hero__link--green--2');
 
-  if (!link12) {
-    return null
+  const navbar = document.querySelector('.nav');
+  const menuItems = document.querySelectorAll('.menu__item-link');
+
+  function addEventListeners() {
+    link1.addEventListener('mouseenter', handleMouseEnter);
+    link1.addEventListener('mouseout', handleMouseOut);
+
+    link2.addEventListener('mouseenter', handleMouseEnter2);
+    link2.addEventListener('mouseout', handleMouseOut);
+
+    link3.addEventListener('mouseenter', handleMouseEnter);
+    link3.addEventListener('mouseout', handleMouseOut);
+
+    if (link12) {
+      link12.addEventListener('mouseenter', handleMouseEnter12);
+      link12.addEventListener('mouseout', handleMouseOut);
+    }
   }
 
-  const container = document.querySelector('.hero');
-
-  if (!container) {
-    return null
+  function handleMouseEnter() {
+    container.classList.add('green');
+    navbar.style.background = 'transparent';
+    menuItems.forEach(element => {
+      element.style.color = '#343a40';
+    });
+    
   }
 
-  link12.addEventListener('mouseenter', () => {
-    container.classList.add('green')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-
-    link2.style.color = '#343a40';
-    link3.style.color = '#343a40';
-  })
-
-  link12.addEventListener('mouseout', () => {
-    container.classList.remove('green')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-
-    link2.style.color = '#343a40';
-    link3.style.color = '#343a40';
-  })
-
-
-  const link1 = document.querySelector('.hero__link--green');
-  const link2 = document.querySelector('.hero__link--transparent');
-  const link3 = document.querySelector('.hero__link--transparent span');
-
-
-
-  link1.addEventListener('mouseenter', () => {
-    container.classList.add('green')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-
-    link2.style.color = '#343a40';
-    link3.style.color = '#343a40';
-  })
-
-  link1.addEventListener('mouseout', () => {
-    container.classList.remove('green')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-
-    link2.style.color = '#343a40';
-    link3.style.color = '#343a40';
-  })
-
-
-
-
-  link2.addEventListener('mouseenter', () => {
-    container.classList.add('transparent')
+  function handleMouseEnter2() {
+    container.classList.add('transparent');
+    navbar.style.background = 'transparent';
     document.querySelectorAll('.menu__item-link').forEach(element => {
       element.style.color = '#fff'
     });
+  }
 
-    link2.style.color = '#fff';
-    link3.style.color = '#fff';
-  })
-
-  link2.addEventListener('mouseout', () => {
-    container.classList.remove('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
+  function handleMouseEnter12() {
+    container.classList.add('green2');
+    navbar.style.background = 'transparent';
+    menuItems.forEach(element => {
+      element.style.color = '#343a40';
     });
+  }
 
-    link2.style.color = '#343a40';
-    link3.style.color = '#343a40';
-  })
-
-  link3.addEventListener('mouseenter', () => {
-    container.classList.add('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#fff'
+  function handleMouseOut() {
+    container.classList.remove('green');
+    container.classList.remove('green2');
+    container.classList.remove('transparent');
+    navbar.style.background = 'white';
+    menuItems.forEach(element => {
+      element.style.color = '#343a40';
     });
-  })
+  }
 
-  link3.addEventListener('mouseout', () => {
-    container.classList.remove('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-  })
-
-
+  addEventListeners();
 }
 
-heroBg3()
-
-function heroBg() {
-  const container = document.querySelector('.hero');
-
-  if (!container) {
-    return null
-  }
-
-
-  const link1 = document.querySelector('.hero__link--green');
-  const link2 = document.querySelector('.hero__link--transparent');
-  const link3 = document.querySelector('.hero__link--transparent span');
-
-
-
-  link1.addEventListener('mouseenter', () => {
-    container.classList.add('green')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-
-    link2.style.color = '#343a40';
-    link3.style.color = '#343a40';
-  })
-
-  link1.addEventListener('mouseout', () => {
-    container.classList.remove('green')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-
-    link2.style.color = '#343a40';
-    link3.style.color = '#343a40';
-  })
-
-
-
-
-  link2.addEventListener('mouseenter', () => {
-    container.classList.add('transparent')
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#fff'
-    });
-
-    link2.style.color = '#fff';
-    link3.style.color = '#fff';
-  })
-
-  link2.addEventListener('mouseout', () => {
-    container.classList.remove('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-
-    link2.style.color = '#343a40';
-    link3.style.color = '#343a40';
-  })
-
-  link3.addEventListener('mouseenter', () => {
-    container.classList.add('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#fff'
-    });
-  })
-
-  link3.addEventListener('mouseout', () => {
-    container.classList.remove('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-  })
-
-
-}
-
-heroBg();
-
-
-
-
-function heroGame() {
-  const container = document.querySelector('.hero-game');
-
-  if (!container) {
-    return null
-  }
-
-  const link1 = document.querySelector('.hero__link--green');
-  const link2 = document.querySelector('.hero__link--transparent');
-  const link3 = document.querySelector('.hero__link--transparent span');
-
-  link1.addEventListener('mouseenter', () => {
-    container.classList.add('green')
-
-  })
-
-  link1.addEventListener('mouseout', () => {
-    container.classList.remove('green')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#fff'
-    });
-
-    link2.style.color = '#fff';
-    link3.style.color = '#fff';
-  })
-
-  link2.addEventListener('mouseenter', () => {
-    container.classList.add('transparent')
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#fff'
-    });
-  })
-
-  link2.addEventListener('mouseout', () => {
-    container.classList.remove('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#fff'
-    });
-
-    link2.style.color = '#fff';
-    link3.style.color = '#fff';
-  })
-
-  link3.addEventListener('mouseenter', () => {
-    container.classList.add('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-
-    link2.style.color = '#fff';
-    link3.style.color = '#fff';
-  })
-
-  link3.addEventListener('mouseout', () => {
-    container.classList.remove('transparent')
-
-    document.querySelectorAll('.menu__item-link').forEach(element => {
-      element.style.color = '#343a40'
-    });
-  })
-
-
-}
-
-heroGame();
-document.getElementsByClassName("accordion__content-open")[0].style.display = "flex";
+setupHero();
+/*document.getElementsByClassName("accordion__content-open")[0].style.display = "flex";*/
 
 const accordionItems = document.querySelectorAll('[data-accordion-item]');
 let openAccordion = null; // переменная для хранения ссылки на открытый аккордеон
@@ -434,13 +243,7 @@ AOS.init({
   //  scrollHorizontally: true
  // });
   // JavaScript-код
-var moveSectionDownButton = document.querySelector('#moveSectionDown');
-if (moveSectionDownButton) {
-  moveSectionDownButton.addEventListener('click', function(e) {
-    e.preventDefault();
-    fullpage_api.moveSectionDown();
-  });
-}
+
 
  /*$(document).ready(function() {
 
@@ -714,6 +517,7 @@ function activateScript() {
     var link = $(this);
     var vacancy = link.data('vacancy');
     var tz = link.data('tz');
+    var id = link.data('id');
 
     tz = tz.toLowerCase(); // Приведение значения к нижнему регистру
 
@@ -743,8 +547,10 @@ function activateScript() {
               scrollTop: footerFormInner.offset().top
             }, 500);
           }
-        
-          $('#vakancy').val(vacancy).prop('disabled', true);
+          
+          $('#vakancy2').attr('value', vacancy);
+          document.querySelector('#vakancy2').disabled = true;
+          $('input[name="vacid"]').val(id);
         },
         
         error: function() {
@@ -755,11 +561,13 @@ function activateScript() {
       console.log('Element with class .ajax-form not found.');
     }
   });
+}
+
 
   // Другой код вашего скрипта
 
   // ...
-}
+
 
 // Вызов функции при инициализации документа
 $(document).ready(function() {
@@ -775,12 +583,55 @@ $(document).ajaxSuccess(function() {
   activateScript();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  var anchorLinks = document.querySelectorAll('a[href^="#"]');
 
+  for (var i = 0; i < anchorLinks.length; i++) {
+    var link = anchorLinks[i];
 
+    if (link.id === 'moveSectionDown') {
+      // Если ID равен 'moveSectionDown', пропустить обработку
+      continue;
+    }
+
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      var targetId = this.getAttribute('href');
+      var targetElement = null;
+
+      if (targetId && targetId !== '#' && !this.classList.contains('test__pictures-link')) {
+        targetElement = document.querySelector(targetId);
+      }
+
+      if (targetElement) {
+        var offset = targetElement.offsetTop - 100;
+        window.scrollTo({
+          top: offset,
+          behavior: 'smooth'
+        });
+      }
+    });
+  }
+});
 
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  
+  var moveSectionDownButton = document.querySelector('#moveSectionDown');
+  if (moveSectionDownButton) {
+    moveSectionDownButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      fullpage_api.moveSectionDown();
+    });
+  }
 });
-
+document.addEventListener('DOMContentLoaded', function() {
+  var moveSectionDownButton = document.querySelector('#moveSectionDown2');
+  if (moveSectionDownButton) {
+    moveSectionDownButton.addEventListener('click', function(e) {
+      e.preventDefault();
+      fullpage_api.moveSectionDown();
+    });
+  }
+});

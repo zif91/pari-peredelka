@@ -1,7 +1,7 @@
 <div class="accordion__item active" data-accordion-item data-vacancy-id="{{data.id}}">
   <div class="accordion__header">
     <div class="accordion__header-time">{{ data['tv.date'] |date("d.m.Y") }}</div>
-    <div class="accordion__header-vakanci">{{ data['title'] }}</div>
+    <div class="accordion__header-vakanci">{{ data['pagetitle'] }}</div>
     <div class="accordion__header-department">{{ data['tv.department'] }}</div>
     <div class="accordion__header-pay">{{ data['tv.pay'] }}</div>
     <div class="accordion__header-other">
@@ -12,8 +12,10 @@
   <a class="accordion__header-other-logo" href="{{ data['tv.in_link'] }}"><img src="templates/img/in.svg" alt="in"></a>
 {% endif %}
       <div class="accordion__header-click">
-        <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="No">
-          Оставить отклик
+        {% if data["tv.teststudy"] is defined and data["tv.teststudy"] %}
+        <a href="javascript:void(0)" class="accordion__header-btn"   data-id="{{data.id}}"  data-vacancy="{{data.pagetitle}}" data-tz="yes">
+      {% else %}
+      <a href="javascript:void(0)" class="accordion__header-btn"   data-id="{{data.id}}"  data-vacancy="{{data.pagetitle}}" data-tz="no">{% endif %}          Оставить отклик
         </a>
         <div class="accordion__content-open">
           <div class="accordion__content-txt">или напишите напрямую руководителяю</br>подразделения</div>
@@ -81,9 +83,9 @@
       </div>
       <div class="accordion__content-links">
         {% if data["tv.teststudy"] is defined and data["tv.teststudy"] %}
-        <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="yes">
+        <a href="javascript:void(0)" class="accordion__header-btn"   data-id="{{data.id}}"  data-vacancy="{{data.pagetitle}}" data-tz="yes">
       {% else %}
-      <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="no">
+      <a href="javascript:void(0)" class="accordion__header-btn"   data-id="{{data.id}}"  data-vacancy="{{data.pagetitle}}" data-tz="no">
       {% endif %} 
           Оставить отклик
         </a>

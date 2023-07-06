@@ -1,7 +1,7 @@
 <div class="accordion__item" data-accordion-item data-vacancy-id="{{data.id}}">
   <div class="accordion__header">
     <div class="accordion__header-time">{{ data['tv.date'] |date("d.m.Y") }}</div>
-    <div class="accordion__header-vakanci">{{ data['title'] }}</div>
+    <div class="accordion__header-vakanci">{{ data['pagetitle'] }}</div>
     <div class="accordion__header-department">{{ data['tv.department'] }}</div>
     <div class="accordion__header-pay">{{ data['tv.pay'] }}</div>
     <div class="accordion__header-other">
@@ -14,9 +14,9 @@
       <div class="accordion__header-click">
         
         {% if data["tv.teststudy"] is defined and data["tv.teststudy"] %}
-          <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="yes">
+          <a href="javascript:void(0)" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}"  data-id="{{data.id}}" data-tz="yes">
         {% else %}
-        <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="no">
+        <a href="javascript:void(0)" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}"  data-id="{{data.id}}"  data-tz="no">
         {% endif %}  
           Оставить отклик
         </a>
@@ -89,9 +89,9 @@
       </div>
       <div class="accordion__content-links">
         {% if data["tv.teststudy"] is defined and data["tv.teststudy"] %}
-          <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="yes">
+          <a href="javascript:void(0)" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}"   data-id="{{data.id}}" data-tz="yes">
         {% else %}
-        <a href="#" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}" data-tz="no">
+        <a href="javascript:void(0)" class="accordion__header-btn" data-vacancy="{{data.pagetitle}}"   data-id="{{data.id}}" data-tz="no">
         {% endif %}  
           Оставить отклик
         </a>

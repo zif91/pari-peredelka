@@ -16,6 +16,20 @@ api: 1,
 })
 |json %}
 
+	{% set dlmenutest = runSnippet('dlmenu', {
+	id: 'accordion',
+	display: 20,
+	parents: 6,
+	depth: 2,
+	tvList:'date,footballdesk,footballimg,department,pay,footballtitle,footballpos,hh_link,in_link,special,rang,duties,requirements,dop_mail,dotadesc,dotatitle,image1,image2,stack,rang,',
+	ownerTPL: '@CODE:[+dl.wrap+]',
+	tpl:'@T_FILE:partials/accordeon',
+	debug: 0,
+	tvPrefix: '',
+	api: 1,
+	})
+	| json %}
+
 
 		<body
 		class="main__body"> <!-- Header -->
@@ -25,23 +39,15 @@ api: 1,
 			<nav class="nav">
 				<div class="navbar">
 					<div class="logo">
-						<a href="#">
+						<a href="/">
 							<img src="templates/img//logo.svg" alt="logo">
 						</a>
 					</div>
 					<ul class="menu">
-						<li class="menu__item">
-							<a href="#about" class="menu__item-link" data-scroll>О компании</a>
-						</li>
-						<li class="menu__item">
-							<a href="#team" class="menu__item-link" data-scroll>Data Team</a>
-						</li>
-						<li class="menu__item">
-							<a href="#stack" class="menu__item-link" data-scroll>Наш стек</a>
-						</li>
-						<li class="menu__item">
-							<a href="#vakancy" class="menu__item-link" data-scroll>Вакансии</a>
-						</li>
+						<li class="menu__item"><a href="#about" onclick="scrollToAnchor(event, 'about')" class="menu__item-link" >О компании</a></li>
+          <li class="menu__item"><a href="#team" onclick="scrollToAnchor(event, 'team')" class="menu__item-link" >Data Team</a></li>
+          <li class="menu__item"><a href="#stack" onclick="scrollToAnchor(event, 'stack')" class="menu__item-link" >Наш стек</a></li>
+          <li class="menu__item"><a href="#vakancy" onclick="scrollToAnchor(event, 'vakancy')" class="menu__item-link" >Вакансии</a></li>
 					</ul>
 					<div class="burger">
 						<svg width="24" height="20" viewbox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -64,12 +70,12 @@ api: 1,
 		<main>
 			<div id="fullpage">
 				<div class="section ">
-					
+
 					<section class="test test-2 video">
 						<video autoplay loop muted>
-							<source src="templates/img/football_video_01.mp4" type="video/mp4">
+							<source src="templates/img/football_video_001.mp4" type="video/mp4">
 							Ваш браузер не поддерживает HTML5 видео.
-						  </video>
+						</video>
 						<div class="container">
 							<div class="test__inner">
 								<div class="test__info">
@@ -89,7 +95,7 @@ api: 1,
 
 									<p class="test__descr">
 										Прокачал себя в банках, страховых, ECOM и телеке? Надоело? Приходи к нам! Полная стата по всему существующему
-																																																																						          спорту! Не типовые задачи, крутой коллектив, релокация в Белград.
+																																																																																																				          спорту! Не типовые задачи, крутой коллектив, релокация в Белград.
 									</p>
 
 									<a class="test__link" href="#" id="moveSectionDown">
@@ -130,12 +136,12 @@ api: 1,
 																</p>
 															</div>
 
-															<div class="test__slide-power">
-																<div class="test__slide-power-img"></div>
-																<div class="test__slide-power-text">
-																	ЗАЩИТА
-																</div>
-															</div>
+															{#<div class="test__slide-power">
+																															<div class="test__slide-power-img"></div>
+																															<div class="test__slide-power-text">
+																																ЗАЩИТА
+																															</div>
+																														</div>#}
 														</div>
 													</div>
 												{% endfor %}
@@ -152,80 +158,79 @@ api: 1,
 				</div>
 				<div class="section">
 					<a name="vacancytop"></a>
+					{#{dlcatalog|dump}#}
 					<section class="char char-2">
-							<video autoplay loop muted>
-							  <source src="templates/img/football_video_01.mp4" type="video/mp4">
-							  Ваш браузер не поддерживает HTML5 видео.
-							</video>
+						<video autoplay loop muted>
+							<source src="templates/img/football_video_002.mp4" type="video/mp4">
+							Ваш браузер не поддерживает HTML5 видео.
+						</video>
 						<div class="container">
 							<div class="char__inner">
 								<div class="char__select">
-									<h3 class="char__title">
-										Выбери свою позицию
-									</h3>
 
-									<ul class="char__select-list">
-										{% for data in dlcatalog %}
-											<li class="char__select-item">
-												<a href="#vacancybot">
-													<img class="char__select-avatar" src="{{data.footballimg}}" alt="">
-													<p class="char__select-name">
-														{{data.footballtitle}}
-													</p>
-													</a>
-											</li>
-											{% endfor %}
-										</ul>
+									{% for array in dlmenutest %}
+										{% for parent in array %}
+											<h3 class="char__title">
+												{{ parent['pagetitle'] }}
+											</h3>
 
+											<ul class="char__select-list">
 
-										{#<div class="char__map">
-																				<div class="char__map-city">
-																					<img class="char__map-img" src="templates/img/char/char-map.png" alt="">
-										
-																					<p class="char__map-descr">
-																						“Играть” будем
-																																																																																		              на карте Белграда
-																					</p>
-																				</div>
-										
-																				<a class="char__map-link" href="#">+5 веских причин, почему стоит работать в нашей компании
-																																																												</a>
-									</div>#}
+												{% for item in parent['children'] %}
+
+													<li class="char__select-item">
+														<a href="#vacancybot">
+															<img class="char__select-avatar" src="{{ item.footballimg }}" alt="">
+															<p class="char__select-name">
+																{{ item.footballtitle }}
+															</p>
+														</a>
+													</li>
+
+												{% endfor %}
+											</ul>
+										{% endfor %}
+										{% endfor %}
+
 								</div>
+
 
 								<a name="vacancybot"></a>
 								<div class="char__info-slider swiper mySwiper">
 									<a class="char__slide-top" style="top: 0px;" href="#vacancytop"><img src="templates/img/backtop.svg" alt=""></a>
 									<div class="char__info-wrapper swiper-wrapper">
-										{% for data in dlcatalog %}
+										{% for array in dlmenutest %}
+											{% for parent in array %}
+												{% for data in parent['children'] %}
+													<div class="char__info swiper-slide">
+														<div class="char__info-inner ">
+															<div class="char__info-top">
+																<img class="char__info-top-char" src="{{data.footballpos}}" alt="">
 
-											<div class="char__info swiper-slide">
-												<div class="char__info-inner ">
-													<div class="char__info-top">
-														<img class="char__info-top-char" src="{{data.footballpos}}" alt="">
+																<h4 class="char__info-top-name">
+																	{{data.footballtitle}}
+																</h4>
 
-														<h4 class="char__info-top-name">
-															{{data.footballtitle}}
-														</h4>
+																<h5 class="char__info-top-label">
+																	{{ data.pagetitle }}
 
-														<h5 class="char__info-top-label">
-															{{ data.rang }}
+																</h5>
+															</div>
 
-														</h5>
+
+															<div class="char__info-middle">
+																{{data.stack | raw}}
+															</div>
+															<p class="char__info-descr">
+																{{data.footballdesk}}
+
+															</p>
+
+															<a class="char__info-link" href="#" data-vacancy-idb="{{data.id}}">Перейти в вакансию</a>
+														</div>
 													</div>
-
-
-													<div class="char__info-middle">
-														{{data.stack | raw}}
-													</div>
-													<p class="char__info-descr">
-														{{data.footballdesk}}
-
-													</p>
-
-													<a class="char__info-link" href="#" data-vacancy-idb="{{data.id}}">Перейти в вакансию</a>
-												</div>
-											</div>
+												{% endfor %}
+											{% endfor %}
 										{% endfor %}
 
 									</div>
@@ -237,9 +242,9 @@ api: 1,
 				<div class="section">
 					<section class="video">
 						<video autoplay loop muted>
-							<source src="templates/img/football_video_02.mp4" type="video/mp4">
+							<source src="templates/img/football_video_003.mp4" type="video/mp4">
 							Ваш браузер не поддерживает HTML5 видео.
-						  </video>
+						</video>
 						<div class="job game-job job-3" style="min-height:100vh">
 							<div class="container">
 								<div class="job__main">
@@ -267,16 +272,16 @@ api: 1,
                 }}
 									</div>
 									<div class="accordion" id="vacanyhtml" style="
-										    padding-top: 110px;
-										"></div>
+																																								    padding-top: 110px;
+																																								"></div>
 								</div>
 							</div>
 						</div>
 					</section>
 				</div>
-				<section  class="video">
+				<section class="video">
 					<div class="section">
-						
+
 						<div class="footer-form footer-form-game footer-form-3">
 							<div class="container">
 								<div class="footer-form__inner">
@@ -301,39 +306,20 @@ api: 1,
 										</div>
 									</div>
 								</div>
-								</div>
-								
-							</section>
-							{#<section>
-																		<div class="section">
-																			<div class="footer-form footer-form-game">
-																				<div class="container">
-																					<div class="footer-form__inner">
-																						<div class="footer-form__top">
-																							<div class="footer-form__top-label">
-																								Свяжитесь с нами
-																							</div>
-																							<h4 class="footer-form__title">
-																								Простая форма для большого
-																								<br>
-																								шага вперед!
-																							</h4>
-																						</div>
-																						<div class="footer-form__main">
-																								<div class="footer-form__main">
-																									
-																								</div>
-																						</div>
-																					</div>
-																				</section>#}
-						</div>
+							</div>
+
+						</section>
+						{#<section>
+																																		</div>
+																																						</section>#}
 					</div>
-				</body>
-			</main>
-			<script>
+				</div>
+			</body>
+		</main>
+		<script>
 
 
-				window.onload = function () {
+			window.onload = function () {
 new fullpage('#fullpage', {
 // options here
 // autoScrolling: true,
@@ -351,9 +337,9 @@ fullpage_api.setRecordHistory(false);
 
 
 };
-			</script>
-			<script>
-				// Обработчик события при клике на ссылку на вакансию
+		</script>
+		<script>
+			// Обработчик события при клике на ссылку на вакансию
 function handleClick(event) {
 event.preventDefault();
 
@@ -419,5 +405,13 @@ addVacancyButtonListeners();
 xhr.send();
 });
 });
-			</script>
-		{% endblock %}
+		</script><script>
+  function scrollToAnchor(event, anchorId) {
+    event.preventDefault(); // Предотвращаем переход по ссылке
+
+    // Переходим на другую страницу с указанием якоря
+    window.location.href = '/#' + anchorId;
+  }
+</script>
+	</body>
+{% endblock %}

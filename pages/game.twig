@@ -15,7 +15,19 @@ tvPrefix: '',
 api: 1,
 })
 |json %}
-
+{% set dlmenutest = runSnippet('dlmenu', {
+  id: 'accordion',
+  display: 20,
+  parents: 6,
+  depth: 2,
+  tvList:'date,department,pay,hh_link,in_link,special,rang,duties,requirements,dop_mail,dotadesc,dotatitle,image1,image2,stack',
+  ownerTPL: '@CODE:[+dl.wrap+]',
+  tpl:'@T_FILE:partials/accordeon',
+  debug: 0,
+  tvPrefix: '',
+  api: 1,
+  })
+  |json %}
 
 <body class="main__body">
   <!-- Header -->
@@ -23,12 +35,12 @@ api: 1,
     <!-- Navbar -->
     <nav class="nav">
       <div class="navbar">
-        <div class="logo"> <a href="#"> <img src="templates/img//logo.svg" alt="logo"> </a> </div>
+        <div class="logo"> <a href="/"> <img src="templates/img//logo.svg" alt="logo"> </a> </div>
         <ul class="menu">
-          <li class="menu__item"><a href="#about" class="menu__item-link" data-scroll>О компании</a></li>
-          <li class="menu__item"><a href="#team" class="menu__item-link" data-scroll>Data Team</a></li>
-          <li class="menu__item"><a href="#stack" class="menu__item-link" data-scroll>Наш стек</a></li>
-          <li class="menu__item"><a href="#vakancy" class="menu__item-link" data-scroll>Вакансии</a></li>
+          <li class="menu__item"><a href="#about" onclick="scrollToAnchor(event, 'about')" class="menu__item-link" >О компании</a></li>
+          <li class="menu__item"><a href="#team" onclick="scrollToAnchor(event, 'team')" class="menu__item-link" >Data Team</a></li>
+          <li class="menu__item"><a href="#stack" onclick="scrollToAnchor(event, 'stack')" class="menu__item-link" >Наш стек</a></li>
+          <li class="menu__item"><a href="#vakancy" onclick="scrollToAnchor(event, 'vakancy')" class="menu__item-link" >Вакансии</a></li>
         </ul>
         <div class="burger">
           <svg width="24" height="20" viewBox="0 0 24 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -77,17 +89,18 @@ api: 1,
           </div>
         </section>
       </div>#}
-      <div class="section" id="daubitest">
+      <div class="section" id="daubitest">      {#{dlmenutest|dump}#}
+
         <section class="test"  style="height:100vh;overflow: hidden;">
           <div class="container">
             <div class="test__inner">
               <div class="test__info">
-                <div class="test__top">
+               {# <div class="test__top">
                   <img class="test__top-img" src="templates/img//test/test-fist.svg" alt="">
                   <p class="test__top-text">
                     НАШ МАНИФЕСТ
                   </p>
-                </div>
+                </div>#}
                 <h2 class="test__title">
                   DATA SCIENCE может быть<br> не скучным!
                 </h2>
@@ -100,7 +113,7 @@ api: 1,
                   Пройти тест и устроится к нам на работу!
                 </a>#}
                 <div class="test__slider-container">
-                  <div class="test__slider swiper mySwiper">
+                  {#<div class="test__slider swiper mySwiper">
                     <div class="test__slider-wrapper swiper-wrapper">
                       {% for data in dlcatalog %}
                       <div class="test__slide swiper-slide">
@@ -198,10 +211,12 @@ api: 1,
                           </div>
                         </div>
                       </div>#}
+                      <a class="test__link" href="#moveSectionDown" id="moveSectionDown2">
+                        Посмотреть все вакансии
+                      </a>
                     </div>
-                  </div>
-                  <div class="test__slider-arrows">
-                    <div class="test__slider-arrow test__slider-prev">
+                    {# <div class="test__slider-arrows">
+                      <div class="test__slider-arrow test__slider-prev">
                       <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_233_9878)">
                           <path d="M10 20.5C7.34784 20.5 4.8043 19.4464 2.92893 17.5711C1.05357 15.6957 6.42368e-07 13.1522 8.74228e-07 10.5C1.10609e-06 7.84783 1.05357 5.30429 2.92893 3.42893C4.8043 1.55357 7.34784 0.499999 10 0.499999C12.6522 0.499999 15.1957 1.55357 17.0711 3.42893C18.9464 5.3043 20 7.84784 20 10.5C20 13.1522 18.9464 15.6957 17.0711 17.5711C15.1957 19.4464 12.6522 20.5 10 20.5V20.5ZM14.375 11.125C14.5408 11.125 14.6997 11.0592 14.8169 10.9419C14.9342 10.8247 15 10.6658 15 10.5C15 10.3342 14.9342 10.1753 14.8169 10.0581C14.6997 9.94085 14.5408 9.875 14.375 9.875L7.13375 9.875L9.8175 7.1925C9.87561 7.13439 9.92171 7.0654 9.95316 6.98948C9.9846 6.91355 10.0008 6.83218 10.0008 6.75C10.0008 6.66782 9.9846 6.58644 9.95316 6.51052C9.92171 6.4346 9.87561 6.36561 9.8175 6.3075C9.75939 6.24939 9.69041 6.20329 9.61448 6.17184C9.53856 6.1404 9.45718 6.12421 9.375 6.12421C9.29282 6.12421 9.21145 6.1404 9.13552 6.17184C9.0596 6.20329 8.99061 6.24939 8.9325 6.3075L5.1825 10.0575C5.1243 10.1156 5.07812 10.1845 5.04661 10.2605C5.0151 10.3364 4.99888 10.4178 4.99888 10.5C4.99888 10.5822 5.0151 10.6636 5.04661 10.7395C5.07812 10.8155 5.1243 10.8844 5.1825 10.9425L8.9325 14.6925C8.99061 14.7506 9.0596 14.7967 9.13552 14.8282C9.21145 14.8596 9.29282 14.8758 9.375 14.8758C9.45718 14.8758 9.53856 14.8596 9.61448 14.8282C9.6904 14.7967 9.75939 14.7506 9.8175 14.6925C9.87561 14.6344 9.92171 14.5654 9.95315 14.4895C9.9846 14.4136 10.0008 14.3322 10.0008 14.25C10.0008 14.1678 9.9846 14.0864 9.95315 14.0105C9.92171 13.9346 9.87561 13.8656 9.8175 13.8075L7.13375 11.125L14.375 11.125Z" fill="white" fill-opacity="0.2" />
@@ -225,24 +240,23 @@ api: 1,
                         </defs>
                       </svg>
                     </div>
-                  </div>
+                  </div>#}
                 </div>
               </div>
               <div class="test__pictures">
                 <div class="test__pictures-inner">
-                  <img class="test__pictures-bg" src="templates/img//test/test-char.png" alt="">
-                  <a class="test__pictures-link" id="moveSectionDown" href="#">
-                    <img class="test__pictures-btn" src="templates/img//test/test-btn.svg" alt="">
+                 {# <img class="test__pictures-bg" src="templates/img//test/test-char.png" alt="">#}
+                  <a class="test__pictures-link" id="moveSectionDown" href="javascript:fullpage_api.moveSectionDown()">
+                    <img class="test__pictures-btn" src="templates/img/test/test-btn.svg" alt="">
                   </a>
                 </div>
               </div>
             </div>
           </div>
         </section>
-      </div>
       <div class="section" id="vacancy-char2" data-anchor="vacancy-char">
       <a name="vacancytop"></a>
-        <section class="char"  style="min-height:195vh">
+        <section class="char"  style="min-height:95vh">
           <div class="container">
             <div class="char__inner">
               <div class="char__select">
@@ -250,7 +264,7 @@ api: 1,
                   Выбери своего персонажа
                   
                 </h3>
-                <div class="char__side">
+                {#<div class="char__side">
                   <div class="char__side-border"></div>
                   <d iv class="char__side-info">
                     <span>
@@ -284,8 +298,53 @@ api: 1,
                     </a>
                   </li>
                   {% endfor %}
-                </ul>
+                </ul>#}
+                {% for array in dlmenutest %}
+                {% for parent in array %}
                 <div class="char__side">
+                  <div class="char__side-border"></div>
+                  <div class="char__side-info">
+                    <span>
+                      <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="0.5" width="20" height="20" rx="10" fill="#00C7B1" />
+                        <g clip-path="url(#clip0_214_1583)">
+                          <path d="M11" fill="black" fill-opacity="0.5" />
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_214_1583">
+                            <rect width="12" height="16" fill="white" transform="translate(4 2)" />
+                          </clipPath>
+                        </defs>
+                      </svg>
+                    </span>
+                    <h4 class="char__side-label">
+                      {{ parent['pagetitle'] }}
+                    </h4>
+                  </div>
+                  <div class="char__side-border"></div>
+                </div>
+                <ul class="char__select-list">
+                  {% for child in parent['children'] %}
+                    <li class="char__select-item">
+                      <a href="#vacancybot">
+                        <img class="char__select-avatar" src="{{ child['image1'] }}" alt="">
+                        <p class="char__select-name">
+                          {{ child['pagetitle'] }}
+                        </p>
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endfor %}{% endfor %}
+              
+              
+              
+
+
+              
+
+                
+               {# <div class="char__side">
                   <div class="char__side-border"></div>
                   <div class="char__side-info">
                     <span>
@@ -306,7 +365,7 @@ api: 1,
                     </h4>
                   </div>
                   <div class="char__side-border"></div>
-                </div>
+                </div>#}
                 {#<ul class="char__select-list">
                   <li class="char__select-item">
                     <img class="char__select-avatar" src="templates/img//char/char-avatar-1.png" alt="">
@@ -369,7 +428,10 @@ api: 1,
                 
                 <a class="char__slide-top" href="#vacancytop"><img  src="templates/img/backtop.svg" alt=""></a>
                 <div class="char__info-wrapper swiper-wrapper">
-                  {% for item in dlcatalog %}
+                  {% for array in dlmenutest %}
+                  {% for parent in array %}
+                  {% for item in parent['children'] %}
+                  
                   <div class="char__info swiper-slide">
                     <div class="char__info-inner ">
                       <div class="char__info-top">
@@ -378,7 +440,7 @@ api: 1,
                           {{item.dotatitle}}
                         </h4>
                         <h5 class="char__info-top-label">
-                          {{ item.rang }}
+                          {{ item.pagetitle }}
                         </h5>
                       </div>
                       <div class="char__info-middle">
@@ -390,7 +452,7 @@ api: 1,
                       <a class="char__info-link" href="{{item.url}}">Перейти в вакансию</a>
                     </div>
                   </div>
-                  {% endfor %}
+                  {% endfor %}{% endfor %}{% endfor %}
                 </div>
               </div>
         </section>
@@ -775,7 +837,13 @@ api: 1,
 	});
 
 #}
+<script>
+  function scrollToAnchor(event, anchorId) {
+    event.preventDefault(); // Предотвращаем переход по ссылке
 
-
+    // Переходим на другую страницу с указанием якоря
+    window.location.href = '/#' + anchorId;
+  }
+</script>
 
   {% endblock %}

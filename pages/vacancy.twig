@@ -70,20 +70,24 @@
 										<div class="accordion__item active" data-accordion-item>
 											<div class="accordion__header">
 												<div class="accordion__header-time">{{ resource['date'] |date("d.m.Y") }}</div>
-												<div class="accordion__header-vakanci">{{ resource['dotatitle'] }}</div>
+												<div class="accordion__header-vakanci">{{ resource['pagetitle'] }}</div>
 												<div class="accordion__header-department">{{ resource['department'] }}</div>
 												<div class="accordion__header-pay">{{ resource['pay'] }}</div>
 												<div class="accordion__header-other">
 													{% if resource['hh_link'] is not empty %}
-														<a class="accordion__header-other-logo" href="{{ resource['hh_link'] }}"><img src="templates/img/hh.svg" alt="in"></a>
+														<a class="accordion__header-other-logo" href="{{ resource['hh_link'] }}"><img src="templates/img/hhWhite.svg" alt="in"></a>
 													{% endif %}
 													{% if resource['in_link'] is not empty %}
-														<a class="accordion__header-other-logo" href="{{ resource['in_link'] }}"><img src="templates/img/in.svg" alt="in"></a>
+														<a class="accordion__header-other-logo" href="{{ resource['in_link'] }}"><img src="templates/img/inWhite.svg" alt="in"></a>
 													{% endif %}
 													<div class="accordion__header-click">
 														<a href="#" id="moveSectionDown" class="accordion__header-btn2">
 															Оставить отклик
 														</a>
+														<div class="accordion__content-open" style="display: flex;">
+														<div class="accordion__content-txt">или напишите напрямую руководителяю</br>подразделения</div>
+														<a href="#"><img src="templates/img/telegram.svg" alt=""></a>
+														</div> 
 														{#<a class="accordion__header-link" href="#">Рекомендовать другу</a>#}
 													</div>
 												</div>

@@ -1,5 +1,7 @@
 <form class="form" action="#" enctype="multipart/form-data">
 	<input type="hidden" name="docid" value="{{ data.docid | default(resource.id) }}">
+	<input type="hidden" name="vacid" value="213">
+
 	{{ data['form.messages'] | raw }}
 	<div class="form__inner">
 		<div class="form__group">
@@ -12,7 +14,7 @@
 			<label class="form__label" for="vakancy">
 				Интересуемая вакансия
 			</label>
-			<input class="input vacancy" type="text" name="vacancy" id="vakancy">
+			<input class="input vacancy" type="text" name="vacancy" id="vakancy2">
 		</div>
 		<div class="form__group">
 			<label class="form__label" for="tel">
